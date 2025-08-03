@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processed Video</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .video-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Original Video</h2>
+        <div class="video-container">
+            <video controls>
+                <source src="{{ original_video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <h2>Processed Video Store in static/uploads/output_video  folder -sorry i am try to upload video on result page</h2>
+        <div class="video-container">
+            <video controls>
+                <source src="{{ processed_video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <br>
+        <a href="{{ url_for('index') }}">Upload another video</a>
+
+        {% if not original_video_url or not processed_video_url %}
+            <div class="error-message">
+                <p>There was an error loading the videos. Please try again.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
